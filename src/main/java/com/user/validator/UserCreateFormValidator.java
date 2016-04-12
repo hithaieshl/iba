@@ -1,8 +1,6 @@
 package com.user.validator;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -13,7 +11,6 @@ import com.user.service.UserService;
 
 @Component
 public class UserCreateFormValidator implements Validator {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserCreateFormValidator.class);
 
     private final UserService userService;
 

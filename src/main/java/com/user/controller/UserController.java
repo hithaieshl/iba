@@ -2,10 +2,7 @@ package com.user.controller;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,8 +27,6 @@ public class UserController {
     @Autowired
     private UserRegisterServiceImpl userRegisterServiceImpl;
     
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
-
     @Autowired
     public UserController(UserService userService, UserCreateFormValidator userCreateFormValidator) {
         this.userService = userService;
@@ -43,24 +38,21 @@ public class UserController {
         binder.addValidators(userCreateFormValidator);
     }
     
-    @RequestMapping(value="/create", method = RequestMethod.GET)
+    @RequestMapping(value = "")
+    public String home(Model model){
+    	return "userHome";
+    }
+    
+    @RequestMapping(value="/createUser", method = RequestMethod.GET)
     public String addModels(Model modelAndView) {
     	modelAndView.addAttribute("user", new UserCreateForm());
     	return "usercreate";
 	}
     
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     public String handleUserCreateForm(@Valid @ModelAttribute("form") UserCreateForm form, BindingResult bindingResult) {
 
-    	if (bindingResult.hasErrors()) {
-            return "usercreate";
-        }
-        try {
-            userService.create(form);
-        } catch (DataIntegrityViolationException e) {
-            bindingResult.reject("email.exists", "Email already exists");
-            return "usercreate";
-        }
+        userService.create(form);
         return "redirect:/user";
     }
     

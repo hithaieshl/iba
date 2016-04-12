@@ -1,7 +1,5 @@
 package com.iba.serviceImpl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -10,9 +8,6 @@ import com.iba.domain.BankDetails;
 import com.iba.domain.BankDetailsRepository;
 import com.iba.domain.PersonalDetails;
 import com.iba.domain.PersonalDetailsRepository;
-import com.iba.domain.RegisteredEmail;
-import com.iba.domain.RegisteredEmailsRepository;
-import com.iba.forms.AddEmailForm;
 import com.iba.forms.BankDetailsForm;
 import com.iba.forms.PersonalDetailsForm;
 import com.iba.service.IbaService;
@@ -23,17 +18,14 @@ public class IbaServiceImpl implements IbaService{
 
 	private final PersonalDetailsRepository personalDetailsRepository;
 	private final BankDetailsRepository bankDetailsRepository;
-	private final RegisteredEmailsRepository registeredEmailsRepository;
 
 	@Autowired
 	public IbaServiceImpl(
 			PersonalDetailsRepository personalDetailsRepository,
-			BankDetailsRepository bankDetailsRepository,
-			RegisteredEmailsRepository registeredEmailsRepository) 
+			BankDetailsRepository bankDetailsRepository) 
 	{
 		this.personalDetailsRepository = personalDetailsRepository;
 		this.bankDetailsRepository = bankDetailsRepository;
-		this.registeredEmailsRepository = registeredEmailsRepository;
 	}
 	
 	@Override
@@ -76,20 +68,6 @@ public class IbaServiceImpl implements IbaService{
 		
 	}
 	
-	@Override
-	public List<RegisteredEmail> getRegisteredEmail(String email) {
-		List<RegisteredEmail> list = registeredEmailsRepository.findByEmail(email);
-		return list;
-	}
-	
-	@Override
-	public RegisteredEmail registerEmail(AddEmailForm addEmailForm) {
-
-		RegisteredEmail registeredEmails = new RegisteredEmail();
-		registeredEmails.setEmail(addEmailForm.getEmail());
-		registeredEmailsRepository.save(registeredEmails);
-		return registeredEmails;
-	}
 }
 
 

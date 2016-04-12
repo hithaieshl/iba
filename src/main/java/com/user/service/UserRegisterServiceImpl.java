@@ -9,7 +9,7 @@ public class UserRegisterServiceImpl implements UserRegisterService{
 
 	@Override
 	public void saveUser(UserRegisterForm userRegisterform) {
-		
+		userRegisterform.getEmail();
 	}
 
 	

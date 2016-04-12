@@ -2,47 +2,30 @@ package com.iba.controller;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.user.service.UserServiceImpl;
-import com.iba.forms.AddEmailForm;
 import com.iba.forms.BankDetailsForm;
 import com.iba.forms.PersonalDetailsForm;
 import com.iba.service.IbaService;
-import com.iba.validator.AddEmailValidator;
 
 @Controller
 @RequestMapping(value = "iba")
 public class IbaController {
 	
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
-
 	private final IbaService ibaService;
-	private final AddEmailValidator addEmailValidator;
 	
 	@Autowired
 	public IbaController(
-			IbaService ibaService,
-			AddEmailValidator addEmailValidator) 
+			IbaService ibaService) 
 	{
 		this.ibaService = ibaService;
-		this.addEmailValidator = addEmailValidator;
 	}
-
-	@InitBinder("addEmailForm")
-    public void initBinder(WebDataBinder binder) {
-        binder.addValidators(addEmailValidator);
-    }
+	
 	
 	@RequestMapping(value = "")
 	public String ibaHome(Model model){
@@ -72,21 +55,5 @@ public class IbaController {
 		ibaService.saveBankDetails(bankDetailsForm);
 		return "redirect:/home";
 	}
-	
-	@RequestMapping(value = "/addEmail", method = RequestMethod.GET)
-	public String addUser(Model model){
-		model.addAttribute("addEmailForm", new AddEmailForm());
-		return "addEmail";
-	}
-	
-	@RequestMapping(value = "/addEmail", method = RequestMethod.POST)
-	public String saveUser(@Valid @ModelAttribute AddEmailForm addEmailForm, BindingResult bindingResult){
-		if (bindingResult.hasErrors()){
-			return "addEmail";
-		}
-		else{
-			ibaService.registerEmail(addEmailForm);
-			return "redirect:/home";
-		}
-	}
+
 }

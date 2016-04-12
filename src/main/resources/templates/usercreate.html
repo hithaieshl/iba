@@ -6,10 +6,9 @@
 </head>
 <body>
 <p>dfdwfwv</p>
-	<form th:action="@{/user/create}" method="post" th:object="${user}">
+	<form th:action="@{/user/createUser}" method="post" th:object="${user}">
 		<p>Email</p>
 		<input type="text" th:field="*{email}" />
-		<p th:if="${#fields.hasErrors('username')}" th:errors="*{username.exists}" />
 		<p>username</p>
 		<input type="text" th:field="*{username}" />
 		<p>password</p>

@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form th:action="@{/user/userRegister}" method="get" th:object="${userRegister}">
+	<form th:action="@{/user/userRegister}" method="post" th:object="${userRegister}">
 		<p>Email</p>
 		<input type="text" th:field="*{email}" />
 		<p>ROLE</p>
