@@ -1,4 +1,4 @@
-package com.registerUser.forms;
+package com.user.forms;
 
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -18,8 +18,9 @@ public class UserCreateForm {
     private String passwordRepeated;
 
     @NotNull
-    private String role = "ROLE_USER";
+    private String role;
 
+    
 	public String getUsername() {
 		return username;
 	}
@@ -55,4 +56,9 @@ public class UserCreateForm {
 	public String getRole() {
 		return role;
 	}
+	
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 }

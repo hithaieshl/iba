@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.registerUser.service.UserServiceImpl;
+import com.user.service.UserServiceImpl;
 import com.iba.forms.AddEmailForm;
 import com.iba.forms.BankDetailsForm;
 import com.iba.forms.PersonalDetailsForm;

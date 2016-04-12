@@ -7,8 +7,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRolesRepository extends CrudRepository<UserRole, Long> 
+public interface RoleRepository extends CrudRepository<Role, Long> 
 {	
-	@Query("select a.role from UserRole a, User b where b.userName=?1 and a.userid=b.userId")
+	@Query("select a.role from Role a, User b where b.userName=?1 and a.roleId=b.role")
     public List<String> findRoleByUserName(String username);
+		
 }

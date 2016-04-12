@@ -1,4 +1,4 @@
-package com.registerUser.controller;
+package com.user.controller;
 
 import javax.validation.Valid;
 
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.registerUser.forms.UserCreateForm;
-import com.registerUser.forms.UserRegisterForm;
-import com.registerUser.service.UserRegisterServiceImpl;
-import com.registerUser.service.UserService;
-import com.registerUser.validator.UserCreateFormValidator;
+import com.user.forms.UserCreateForm;
+import com.user.forms.UserRegisterForm;
+import com.user.service.UserRegisterServiceImpl;
+import com.user.service.UserService;
+import com.user.validator.UserCreateFormValidator;
 
 @Controller
 @RequestMapping(value="user")

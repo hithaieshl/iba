@@ -1,6 +1,6 @@
-package com.registerUser.service;
+package com.user.service;
 
-import com.registerUser.forms.UserRegisterForm;
+import com.user.forms.UserRegisterForm;
 
 public interface UserRegisterService {
 

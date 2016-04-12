@@ -1,8 +1,8 @@
-package com.registerUser.service;
+package com.user.service;
 
 import java.util.Collection;
 
-import com.registerUser.forms.UserCreateForm;
+import com.user.forms.UserCreateForm;
 import com.domain.User;
 
 public interface UserService 

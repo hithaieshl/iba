@@ -10,19 +10,19 @@ import org.springframework.stereotype.Service;
 
 import com.domain.User;
 import com.domain.UserRepository;
-import com.domain.UserRolesRepository;
+import com.domain.RoleRepository;
 
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService
 {	
 	private final UserRepository userRepository;
-	private final UserRolesRepository userRolesRepository;
+	private final RoleRepository userRoleRepository;
 	
 	@Autowired
-    public CustomUserDetailsService(UserRepository userRepository,UserRolesRepository userRolesRepository) 
+    public CustomUserDetailsService(UserRepository userRepository,RoleRepository userRolesRepository) 
 	{
         this.userRepository = userRepository;
-        this.userRolesRepository=userRolesRepository;
+        this.userRoleRepository=userRolesRepository;
     }
         
 	@Override
@@ -35,7 +35,7 @@ public class CustomUserDetailsService implements UserDetailsService
 		}
 		else
 		{
-			List<String> userRoles=userRolesRepository.findRoleByUserName(username);
+			List<String> userRoles=userRoleRepository.findRoleByUserName(username);
 			return new CustomUserDetails(user,userRoles);
 		}
 	}		
