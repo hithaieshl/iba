@@ -1,4 +1,4 @@
-package com.createUser.domain;
+package com.registerUser.forms;
 
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;

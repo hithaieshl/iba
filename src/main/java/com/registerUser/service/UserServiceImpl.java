@@ -1,4 +1,4 @@
-package com.createUser.service;
+package com.registerUser.service;
 
 import java.util.Collection;
 
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.createUser.domain.UserCreateForm;
+import com.registerUser.forms.UserCreateForm;
 import com.domain.User;
 import com.domain.UserRepository;
 import com.domain.UserRole;

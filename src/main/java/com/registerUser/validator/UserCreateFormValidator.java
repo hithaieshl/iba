@@ -1,4 +1,4 @@
-package com.createUser.validator;
+package com.registerUser.validator;
 
 
 import org.slf4j.Logger;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import com.createUser.domain.UserCreateForm;
-import com.createUser.service.UserService;
+import com.registerUser.forms.UserCreateForm;
+import com.registerUser.service.UserService;
 
 @Component
 public class UserCreateFormValidator implements Validator {

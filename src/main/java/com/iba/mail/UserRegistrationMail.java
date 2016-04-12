@@ -4,7 +4,7 @@ import com.sendgrid.SendGrid;
 import com.sendgrid.SendGrid.Email;
 
 public class UserRegistrationMail {
-
+/*
 	public void sendMail(){
 		SendGrid sendgrid = new SendGrid("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");
         Email email = new Email();
@@ -29,5 +29,5 @@ public class UserRegistrationMail {
             e.printStackTrace();
             System.out.println("Failed");
         }
-	}
+	}*/
 }

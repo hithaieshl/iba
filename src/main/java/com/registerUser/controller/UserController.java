@@ -1,4 +1,4 @@
-package com.createUser.controller;
+package com.registerUser.controller;
 
 import javax.validation.Valid;
 
@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.createUser.domain.UserCreateForm;
-import com.createUser.service.UserService;
-import com.createUser.validator.UserCreateFormValidator;
+import com.registerUser.forms.UserCreateForm;
+import com.registerUser.forms.UserRegisterForm;
+import com.registerUser.service.UserRegisterServiceImpl;
+import com.registerUser.service.UserService;
+import com.registerUser.validator.UserCreateFormValidator;
 
 @Controller
 @RequestMapping(value="user")
@@ -24,6 +26,9 @@ public class UserController {
 	
     private final UserService userService;
     private final UserCreateFormValidator userCreateFormValidator;
+    
+    @Autowired
+    private UserRegisterServiceImpl userRegisterServiceImpl;
     
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
@@ -38,25 +43,16 @@ public class UserController {
         binder.addValidators(userCreateFormValidator);
     }
     
-    @RequestMapping(value="", method = RequestMethod.GET)
+    @RequestMapping(value="/create", method = RequestMethod.GET)
     public String addModels(Model modelAndView) {
     	modelAndView.addAttribute("user", new UserCreateForm());
     	return "usercreate";
 	}
     
-   /* @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ModelAndView getUserCreatePage() {
-    	LOGGER.info("*********************************************getUserCreatePage");
-    	return new ModelAndView("usercreate", "form", new UserCreateForm());
-    }*/
-
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String handleUserCreateForm(@Valid @ModelAttribute("form") UserCreateForm form, BindingResult bindingResult) {
-    	LOGGER.info("*********************************************handleUserCreateForm");
 
     	if (bindingResult.hasErrors()) {
-    		LOGGER.info("*********************************** inside if condition");
-    		LOGGER.info("**************************binding errors-->" + bindingResult.getAllErrors());
             return "usercreate";
         }
         try {
@@ -67,5 +63,17 @@ public class UserController {
         }
         return "redirect:/user";
     }
+    
+    @RequestMapping(value = "/userRegister", method = RequestMethod.GET)
+    public String sendUserRegisterForm(Model model){
+    	model.addAttribute("userRegister" ,new UserRegisterForm());
+    	return "userRegister";
+    }
 
+    @RequestMapping(value = "/userRegister", method = RequestMethod.POST)
+    public String getUserRegisterForm(@Valid @ModelAttribute("userRegisterForm") UserRegisterForm userRegisterForm, BindingResult bindingResult){
+    	userRegisterServiceImpl.saveUser(userRegisterForm);
+    	return "redirect:/home";
+    }
+    
 }

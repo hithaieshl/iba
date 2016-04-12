@@ -17,7 +17,7 @@ public interface IbaService {
 	
 	List<RegisteredEmail> getRegisteredEmail(String email);
 	
-	RegisteredEmail saveEmail(AddEmailForm addEmailForm);
+	RegisteredEmail registerEmail(AddEmailForm addEmailForm);
 	
 	
 	

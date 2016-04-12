@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.createUser.service.UserServiceImpl;
+import com.registerUser.service.UserServiceImpl;
 import com.iba.forms.AddEmailForm;
 import com.iba.forms.BankDetailsForm;
 import com.iba.forms.PersonalDetailsForm;
@@ -43,6 +43,11 @@ public class IbaController {
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(addEmailValidator);
     }
+	
+	@RequestMapping(value = "")
+	public String ibaHome(Model model){
+		return "ibaHome";
+	}
 	
 	@RequestMapping(value = "/personalDetails", method = RequestMethod.GET)
 	public String sendPersonalDetailsForm(Model model){
@@ -80,7 +85,7 @@ public class IbaController {
 			return "addEmail";
 		}
 		else{
-			ibaService.saveEmail(addEmailForm);
+			ibaService.registerEmail(addEmailForm);
 			return "redirect:/home";
 		}
 	}

@@ -83,7 +83,7 @@ public class IbaServiceImpl implements IbaService{
 	}
 	
 	@Override
-	public RegisteredEmail saveEmail(AddEmailForm addEmailForm) {
+	public RegisteredEmail registerEmail(AddEmailForm addEmailForm) {
 
 		RegisteredEmail registeredEmails = new RegisteredEmail();
 		registeredEmails.setEmail(addEmailForm.getEmail());
