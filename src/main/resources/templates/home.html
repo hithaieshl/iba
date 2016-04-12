@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Home</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" href="../static/css/home-style.css" th:href="@{css/home-style.css}" type="text/css" media="screen"/>
+        
+    </head>
+
+    <body>
+        <div id="content">
+            <a class="back" href="http://tympanus.net/codrops/2010/04/29/awesome-bubble-navigation-with-jquery"></a>
+            <div class="title"></div>
+            <div class="navigation" id="nav">
+                <div class="item user">
+                    <img src="images/home-bg_user.png" th:src="@{images/home-bg_user.png}" alt="user" width="199" height="199" class="circle"/>
+                    <a href="/user" class="icon"></a>
+                    <h2>Create User</h2>
+                    <ul>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Properties</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="item home">
+                    <img src="images/home-bg_home.png" th:src="@{images/home-bg_home.png}" alt="home" width="199" height="199" class="circle"/>
+                    <a href="iba/personalDetails" class="icon"></a>
+                    <h2>IBA personal details</h2>
+                    <ul>
+                        <li><a href="#">Portfolio</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="item shop">
+                    <img src="images/home-bg_shop.png" th:src="@{images/home-bg_shop.png}" alt="shop" width="199" height="199" class="circle"/>
+                    <a href="iba/bankDetails" class="icon"></a>
+                    <h2>IBA bank details</h2>
+                    <ul>
+                        <li><a href="#">Catalogue</a></li>
+                        <li><a href="#">Orders</a></li>
+                        <li><a href="#">Offers</a></li>
+                    </ul>
+                </div>
+                <div class="item camera">
+                    <img src="images/home-bg_camera.png" th:src="@{images/home-bg_camera.png}" alt="camera" width="199" height="199" class="circle"/>
+                    <a href="#" class="icon"></a>
+                    <h2>Photos</h2>
+                    <ul>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Prints</a></li>
+                        <li><a href="#">Submit</a></li>
+                    </ul>
+                </div>
+                <div class="item fav">
+                    <img src="images/home-bg_fav.png" th:src="@{images/home-bg_fav.png}" alt="" width="199" height="199" class="circle"/>
+                    <a href="#" class="icon"></a>
+                    <h2>Love</h2>
+                    <ul>
+                        <li><a href="#">Social</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Comments</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+		<form th:action="@{/logout}" method="post">
+			<div>
+				<input type="submit" value="Log Out"/>
+			</div>
+		</form>
+        
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script type="text/javascript" src="../static/js/home.js" th:ref="@{js/home.js}" ></script>
+        <script type="text/javascript" src="../static/js/home2.js" th:ref="@{js/home2.js}" ></script>
+        
+    </body>
+</html>

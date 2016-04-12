@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1"/>
+	<title>Insert title here</title>
+</head>
+<body>
+	Bank details
+	
+	<form th:action="@{/iba/bankDetails}" method="post" th:object="${bankDetails}">
+		<p>bank name</p>
+		<input type="text" th:field="*{bankName}"/>
+		<p>bank branch</p>
+		<input type="text" th:field="*{bankBranch}"/>
+		<p>Account holder name</p>
+		<input type="text" th:field="*{accountHolderName}"/>
+		<p>account number</p>
+		<input type="text" th:field="*{accountNumber}"/>
+		<p>ifsc code</p>
+		<input type="text" th:field="*{ifscCode}"/>
+		<input type="submit" value="submit"/>
+	</form>
+</body>
+</html>

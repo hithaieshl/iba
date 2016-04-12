@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1"/>
+	<title>Insert title here</title>
+</head>
+<body>
+	personalDetails
+	
+	<form th:action="@{/iba/personalDetails}" method="post" th:object="${personalDetails}">
+		<p>First name *</p>
+		<input type="text" th:field="*{first_name}"/>
+		<p>middle name</p>
+		<input type="text" th:field="*{middle_name}"/>
+		<p>last name *</p>
+		<input type="text" th:field="*{last_name}"/>
+		<p>dob</p>
+		<input type="text" th:field="*{dob}"/>
+		<p>fathers name*</p>
+		<input type="text" th:field="*{father_name}"/>
+		<p>mothers name*</p>
+		<input type="text" th:field="*{mother_name}"/>
+		<p>gender</p>
+		<input type="text" th:field="*{gender}"/>
+		<p>marital status</p>
+		<input type="text" th:field="*{marital_status}"/>
+		<p>contact</p>
+		<input type="text" th:field="*{contact_num}"/>
+		<p>PAN</p>
+		<input type="text" th:field="*{pan_num}"/>
+		<p>doj</p>
+		<input type="text" th:field="*{date_of_joining}"/>
+		<p>department</p>
+		<input type="text" th:field="*{department}"/>
+		<p>designation</p>
+		<input type="text" th:field="*{designation}"/>
+		<p>location</p>
+		<input type="text" th:field="*{location}"/>
+		<input type="submit" value="submit"/>
+	</form>
+</body>
+</html>
