@@ -2,6 +2,7 @@ package com.user.service;
 
 import java.util.Collection;
 
+import com.user.forms.PasswordResetForm;
 import com.user.forms.UserCreateForm;
 import com.domain.User;
 
@@ -16,4 +17,6 @@ public interface UserService
     Collection <User> getAllUsers();
     
     User create(UserCreateForm form);
+
+	void saveNewPassword(PasswordResetForm passwordReset);
 }

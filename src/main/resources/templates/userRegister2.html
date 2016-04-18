@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:action="@{/user/userRegister}" method="post" th:object="${userRegister}">
+		<p>Email</p>
+		<input type="text" th:field="*{email}" />
+		<p>ROLE</p>
+		<select id="type" th:field="*{role}" name="type">
+			<option value="2" selected = "selected">USER</option>
+			<option value="1">ADMIN</option>
+		</select>
+		<input type="submit" value="register" />
+	</form>
+</body>
+</html>

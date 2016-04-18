@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.user.forms.PasswordResetForm;
 import com.user.forms.UserCreateForm;
 import com.user.forms.UserRegisterForm;
 import com.user.service.UserRegisterServiceImpl;

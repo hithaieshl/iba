@@ -1,5 +1,7 @@
 package com;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,29 +14,40 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.utils.LoginSuccessHandler;
+
 @Configuration
 @EnableWebSecurity
 @ComponentScan(basePackages="com.security")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter 
 {
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebSecurityConfig. class);
+	
 	 @Autowired 
 	 private UserDetailsService userDetailsService;
 	 
 	 @Autowired
+	 private LoginSuccessHandler successHandler;
+	 
+	 @Autowired
 	 public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception 
 	 {    
+		 LOGGER.info("in config aurh");
 		 auth.userDetailsService(userDetailsService).passwordEncoder(passwordencoder());
 	 } 
- 
+
+	
+	 
 	 @Override
 	 protected void configure(HttpSecurity http) throws Exception 
 	 {
-		 http
+		 http		 
 		 	.authorizeRequests()
-		 		.antMatchers("/hello", "/home", "/", "/user", "/iba/**").access("hasRole('ROLE_ADMIN')")
+		 		//.antMatchers("/hello", "/home", "/", "/user/**", "/iba/**").access("hasRole('ROLE_ADMIN')")
+		 		//.antMatchers("/", "/home", "/user/**", "/iba/**").hasAuthority("0")
 		 		.anyRequest().permitAll()
 		 	.and()
-		 		.formLogin().loginPage("/login")
+		 		.formLogin().loginPage("/login").successHandler(successHandler)
 		 		.usernameParameter("username").passwordParameter("password")
 		 	.and()
 		 		.logout()

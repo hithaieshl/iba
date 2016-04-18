@@ -7,9 +7,12 @@ import javax.persistence.NonUniqueResultException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.user.forms.PasswordResetForm;
 import com.user.forms.UserCreateForm;
 import com.domain.Role;
 import com.domain.RoleRepository;
@@ -30,6 +33,19 @@ public class UserServiceImpl implements UserService {
         this.roleRepo = userRolesRepository;
     }
 
+    @Override
+    public void saveNewPassword(PasswordResetForm passwordReset) {
+
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	
+    	String userName = auth.getName();
+    	User user = getUserByUserName(userName);
+    	LOGGER.info("$$$$$$$$$$$" + auth.getName());
+    	user.setPassword(new BCryptPasswordEncoder().encode(passwordReset.getPassword()));
+    	user.setEnabled(1);
+    	userRepository.save(user);
+    }
+    
     @Override
     public User create(UserCreateForm form) {
     	LOGGER.info("*********************************************create");
@@ -65,9 +81,9 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 		}
 		finally {
-			return user;
+			
 		}
-		
+		return user;
 	}
 	
 	@Override

@@ -12,6 +12,7 @@ import com.domain.User;
 
 public class CustomUserDetails extends User implements UserDetails 
 {		
+	
 	private static final long serialVersionUID = 1L;
 	private List<String> userRoles;
 
@@ -24,8 +25,11 @@ public class CustomUserDetails extends User implements UserDetails
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() 
 	{
-		String roles=StringUtils.collectionToCommaDelimitedString(userRoles);			
-		return AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
+		String roles=StringUtils.collectionToCommaDelimitedString(userRoles);
+		int enabled = getEnabled();
+		
+		
+		return AuthorityUtils.commaSeparatedStringToAuthorityList(roles + "," + enabled);
 	}
 
 	@Override
@@ -36,6 +40,7 @@ public class CustomUserDetails extends User implements UserDetails
 	public boolean isAccountNonLocked() {
 		return true;
 	}
+
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;

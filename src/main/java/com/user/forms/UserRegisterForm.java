@@ -1,5 +1,7 @@
 package com.user.forms;
 
+import javax.validation.constraints.Max;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class UserRegisterForm {
@@ -7,15 +9,15 @@ public class UserRegisterForm {
 	@NotEmpty
 	private String email;
 	
-	@NotEmpty
-	private String role;
+	@Max(1)
+	private int role;
 
 	
-	public String getRole() {
+	public int getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(int role) {
 		this.role = role;
 	}
 
